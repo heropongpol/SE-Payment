@@ -24,7 +24,7 @@ public class DemoApplication {
                            StartTimeRepository startTimeRepository,FinalTimeRepository finalTimeRepository , Photocollectionrepository photocollectionrepository,
                            Photoseriesrepository photoseriesrepository, Promotionphotocollectionrepository promotionphotocollectionrepository,
                            Shootingstylerepository shootingstylerepository, ModelRepository modelRepository, PromotionModelRepository promotionModelRepository , ProvinceRepository provinceRepository,
-                           AdminRepository adminRepository){
+                           AdminRepository adminRepository,Cardbankrepository cardbankrepository,Cardtyperepository cardtyperepository,Paymentrepository paymentrepository){
         return args -> {
             Admin admin = new Admin();
             admin.setPassword("admin");
@@ -394,6 +394,26 @@ public class DemoApplication {
             promotionModelRepository.save(p2);
             promotionModelRepository.save(p3);
 
+            Cardtype ct1 = new Cardtype("Visa");
+            Cardtype ct2 = new Cardtype("Mastercard");
+            Cardtype ct3 = new Cardtype("JCB");
+            Cardtype ct4 = new Cardtype("UnionPay");
+            cardtyperepository.save(ct1);
+            cardtyperepository.save(ct2);
+            cardtyperepository.save(ct3);
+            cardtyperepository.save(ct4);
+
+
+            Cardbank cb1 = new Cardbank("กรุงไทย");
+            Cardbank cb2 = new Cardbank("ไทยพาณิชย์");
+            Cardbank cb3 = new Cardbank("กรุงเทพ");
+            Cardbank cb4 = new Cardbank("กสิกรไทย");
+            Cardbank cb5 = new Cardbank("กรุงศรีอยุธยา");
+            cardbankrepository.save(cb1);
+            cardbankrepository.save(cb2);
+            cardbankrepository.save(cb3);
+            cardbankrepository.save(cb4);
+            cardbankrepository.save(cb5);
 
         };
     }

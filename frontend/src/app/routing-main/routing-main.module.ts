@@ -8,7 +8,7 @@ import {ReservationEquipmentComponent} from '../reservation-equipment/reservatio
 import {ReservationPhotographerComponent} from "../reservation-photographer/reservation-photographer.component";
 import {PhotocollectionComponent} from "../photocollection/photocollection.component";
 import {ReservationModelComponent} from '../reservation-model/reservation-model.component';
-
+import {PayonlineComponent} from '../payonline/payonline.component';
 import {RepairinvoicedComponent} from "../repairinvoiced/repairinvoiced.component";
 const routes: Routes = [
    {path:'',component:LoginComponent},
@@ -19,6 +19,7 @@ const routes: Routes = [
     {path:'reservation-photographer',component:ReservationPhotographerComponent},
     {path:'photocollection',component:PhotocollectionComponent},
     {path: 'reservation-model',component:ReservationModelComponent},
+    {path: 'payonline',component:PayonlineComponent},
     {path: 'repairinvoiced',component:RepairinvoicedComponent}
 ];
 

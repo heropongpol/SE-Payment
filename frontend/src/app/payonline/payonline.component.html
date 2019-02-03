@@ -1,0 +1,162 @@
+<html>
+
+<mat-card class = "basic-container" style="background-color:#003333">
+  <mat-toolbar-row>
+    <span class = "version-info" style="color:#FFFF99;" >Photo</span> &nbsp;
+    <span class = "version-info" style="color:#99FF00;" >Studio</span> &nbsp;
+    <span class = "version-info1" style="color:#CCFF66;" >Team10</span>
+    <span class="example-fill-remaining-space"></span>
+
+    <a mat-button routerLink="." style="color:#FFFFFF;" routerLink="">LOGOUT</a>
+
+  </mat-toolbar-row>
+</mat-card>
+
+<mat-toolbar style="background-color:#003330">
+  <span style="color:#FFFFFF;">WELCOME TO PHOTO STUDIO</span>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <mat-button-toggle-group #group="matButtonToggleGroup" style="background-color:#FFFFFF">
+    <mat-button-toggle value="left" style="color:#000000;" (click)="home()">Home</mat-button-toggle>
+  </mat-button-toggle-group>&nbsp;
+  <mat-button-toggle-group #group="matButtonToggleGroup" style="background-color:#FFFFFF">
+    <mat-button-toggle value="left" style="color:#000000;" (click)="studio()">Reservation Studio</mat-button-toggle>
+  </mat-button-toggle-group>&nbsp;
+  <mat-button-toggle-group #group="matButtonToggleGroup" style="background-color:#FFFFFF">
+    <mat-button-toggle value="left" style="color:#000000;" (click)="equipment()">Reservation Equipment</mat-button-toggle>
+  </mat-button-toggle-group>&nbsp;
+  <mat-button-toggle-group #group="matButtonToggleGroup" style="background-color:#FFFFFF">
+    <mat-button-toggle value="left" style="color:#000000;" (click)="photo()">Reservation Photographer</mat-button-toggle>
+  </mat-button-toggle-group>&nbsp;
+  <mat-button-toggle-group #group="matButtonToggleGroup" style="background-color:#FFFFFF">
+    <mat-button-toggle value="left" style="color:#000000;" (click)="collect()">Reservatoion Photo Collection</mat-button-toggle>
+  </mat-button-toggle-group>&nbsp;
+  <mat-button-toggle-group #group="matButtonToggleGroup" style="background-color:#FFFFFF">
+    <mat-button-toggle value="left" style="color:#000000;" (click)="model()">Reservation model</mat-button-toggle>
+  </mat-button-toggle-group>&nbsp;
+  <mat-button-toggle-group #group="matButtonToggleGroup" style="background-color:#FFFFFF">
+    <mat-button-toggle value="left" style="color:#000000;" (click)="payment()">Payment</mat-button-toggle>
+  </mat-button-toggle-group>&nbsp;
+  <mat-divider></mat-divider>
+</mat-toolbar>
+
+<body class = "databox" >
+<br>
+<mat-card class="example-card">
+  <body class="cen">
+
+
+  <font class="a">หมายเลขการจองอุปกรณ์</font>
+  <mat-form-field style="width: 10%;">
+    <mat-select placeholder="หมายเลขการจองอุปกรณ์" [(ngModel)]="rent1Select" name="reservationequipment_id">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let rent1 of rent1s" [value]="rent1.reservationequipment_id" >
+        {{rent1.reservationequipment_id}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <font class="a">หมายเลขการจองนางแบบ</font>
+  <mat-form-field style="width: 10%;">
+    <mat-select placeholder="หมายเลขการจองนางแบบ" [(ngModel)]="rent2Select" name="reservationModel_id">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let rent2 of rent2s" [value]="rent2.reservationModel_id" >
+        {{ren2t.reservationModel_id}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <font class="a">หมายเลขการจองหมายเลขการจองสตูดิโอ</font>
+  <mat-form-field style="width: 10%;">
+    <mat-select placeholder="หมายเลขการจองสตูดิโอ" [(ngModel)]="rent3Select" name="reservationStudio_id">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let rent3 of rent3s" [value]="rent3.reservationStudio_id" >
+        {{rent3.reservationStudio_id}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <font class="a">หมายเลขการจองช่างภาพ</font>
+  <mat-form-field style="width: 10%;">
+    <mat-select placeholder="หมายเลขการจองช่างภาพ" [(ngModel)]="rent4Select" name="reservationPhotographer_id">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let rent4 of rent4s" [value]="rent4.reservationPhotographer_id" >
+        {{rent4.reservationPhotographer_id}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <font class="a">หมายเลขการจองชุด</font>
+  <mat-form-field style="width: 10%;">
+    <mat-select placeholder="หมายเลขการจองชุด" [(ngModel)]="rent5Select" name="photocollection_id">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let rent5 of rent5s" [value]="rent5.photocollection_id" >
+        {{rent5.photocollection_id}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+
+  <font class="a">ราคาที่ต้องการชำระ</font>
+  <mat-form-field class="a" style="width: 10%;">
+    <input matInput #input maxlength="5" [(ngModel)]="payment_total" [ngModelOptions]="{standalone: true}" type="text">
+  </mat-form-field>
+
+  <br>
+
+  <font class="a">ประเภทบัตร</font>
+  <mat-form-field style="width: 10%;">
+    <mat-select placeholder="ประเภทบัตร" [(ngModel)]="cardSelect" name="card_type">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let a of cardtypes" [value]="a.id" >
+        {{a.card_type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br>
+  <font class="a">หมายเลขบัตร</font>
+
+  <mat-form-field class="a"style="width: 10%;">
+    <input matInput #input maxlength="16" [(ngModel)]="card_id" [ngModelOptions]="{standalone: true}" type="text">
+  </mat-form-field>
+
+
+
+
+  <br>
+  <font class="a">ชื่อเจ้าของบัตร</font>
+  <mat-form-field class="a" style="width: 10%;">
+    <input matInput [(ngModel)]="card_name" [ngModelOptions]="{standalone: true}" type="text">
+  </mat-form-field>
+  <br>
+  <font class="a">CVV/CID</font>
+  <mat-form-field class="a" style="width: 10%;">
+    <input matInput #input maxlength="3" [(ngModel)]="card_cvv" [ngModelOptions]="{standalone: true}" type="number">
+  </mat-form-field>
+  <br>
+  <font class="a">ธนาคารผู้ออกบัตร</font> <mat-form-field style="width: 10%;">
+    <mat-select  [(ngModel)]="cardbankSelect" name="card_bank">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let a of cbs" [value]="a.id" >
+        {{a.card_bank}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <button mat-fab color="primary"  class="enter" (click)= "insert()">Enter</button>
+
+
+  </body>
+</mat-card>
+<br>
+
+
+</body>
+
+</html>

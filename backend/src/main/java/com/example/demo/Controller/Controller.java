@@ -20,7 +20,7 @@ public class Controller {
     @Autowired MemberRepository memberRepository ;
     @Autowired TitleRepository titleRepository ;
     @Autowired PromotionStudioRepository promotionStudioRepository;
-    @Autowired ReservationStudioRepository reservationStudioRepository;
+    @Autowired private ReservationStudioRepository reservationStudioRepository;
     @Autowired RoomStudioRepository roomStudioRepository;
     @Autowired TimeStudioRepository timeStudioRepository;
     @Autowired private Reservationequipmentrepository reservationequipmentrepository;
@@ -36,13 +36,17 @@ public class Controller {
     @Autowired private Photoseriesrepository photoseriesrepository;
     @Autowired private Promotionphotocollectionrepository promotionphotocollectionrepository;
     @Autowired private Shootingstylerepository shootingstylerepository;
-    @Autowired  ReservationModelRepository reservationModelRepository;
+    @Autowired  private ReservationModelRepository reservationModelRepository;
     @Autowired  ModelRepository modelRepository;
     @Autowired  PromotionModelRepository promotionModelRepository;
     @Autowired  ProvinceRepository provinceRepository;
     @Autowired  AdminRepository adminRepository;
     @Autowired  CommentRepository commentRepository;
     @Autowired  RepairInvoicedRepository repairInvoicedRepository;
+    @Autowired private Paymentrepository paymentrepository;
+    @Autowired private Cardtyperepository cardtyperepository;
+    @Autowired private Cardbankrepository cardbankrepository;
+
     @GetMapping(path = "/address", produces = MediaType.APPLICATION_JSON_VALUE)
     
 public Collection<Address> address() {
@@ -345,7 +349,55 @@ public Collection<Reservationequipment> reservationrepository() {
         reservationModelRepository.save(reservationModel);
         return reservationModel;
     }
+    @GetMapping(path = "/Payment")
+    public Collection<Payment> paymentrepository() {
+        return paymentrepository.findAll().stream().collect(Collectors.toList());
 
 
+    }@GetMapping(path = "/Cardtype")
+    public Collection<Cardtype> cardtyperepository() {
+        return cardtyperepository.findAll().stream().collect(Collectors.toList());
+
+    }
+
+    @GetMapping(path = "/Cardbank")
+    public Collection<Cardbank> cardbankrepository() {
+        return cardbankrepository.findAll().stream().collect(Collectors.toList());
+    }
+
+    @PostMapping(path = "/payment/{card_cvv}/{card_name}/{card_id}/{payment_total}/{name}/{reservationequipment}/{cardbank}/{card_type}/{reservationmodel}/{photocollection}/{reservationphotographer}/{reservationstudio}")
+    public Payment payment(@PathVariable int card_cvv  ,@PathVariable String card_name
+            ,@PathVariable long card_type,@PathVariable String card_id,@PathVariable int payment_total,
+                           @PathVariable String name,@PathVariable Long reservationequipment,@PathVariable Long cardbank,
+                           @PathVariable Long ReservationModels,@PathVariable Long photocollection,
+                           @PathVariable Long reservationPhotographer, @PathVariable Long reservationStudio1) {
+
+
+        Cardtype cardtype = cardtyperepository.findById(card_type).get();
+        Cardbank cardbank1 = cardbankrepository.findById(cardbank).get();
+        Member member = memberRepository.findByName(name);
+        Reservationequipment rent1 = reservationequipmentrepository.findById(reservationequipment).get();
+        ReservationModel reservationModel1 = reservationModelRepository.findById(ReservationModels).get();
+        ReservationStudio reservationStudio = reservationStudioRepository.findById(reservationStudio1).get();
+        ReservationPhotographer reservationPhotographer1 = reservationPhotographerRepository.findById(reservationPhotographer).get();
+        Photocollection photocollection1 = photocollectionrepository.findById(photocollection).get();
+
+        Payment payment = new Payment();
+        payment.setPayment_total(payment_total);
+        payment.setMember(member);
+        payment.setReservationequipment(rent1);
+        payment.setReservationModel(reservationModel1);
+        payment.setReservationStudio(reservationStudio);
+        payment.setReservationPhotographer(reservationPhotographer1);
+        payment.setPhotocollection(photocollection1);
+        payment.setCardtype(cardtype);
+        payment.setCard_name(card_name);
+        payment.setCard_id(card_id);
+        payment.setCard_cvv(card_cvv);
+        payment.setCardbank(cardbank1);
+        paymentrepository.save(payment);
+
+        return payment;
+    }
 }
 

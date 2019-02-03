@@ -34,6 +34,7 @@ import {ReservationPhotographerComponent} from './reservation-photographer/reser
 import {PhotocollectionComponent} from './photocollection/photocollection.component';
 import {ReservationModelComponent} from './reservation-model/reservation-model.component';
 import { RepairinvoicedComponent } from './repairinvoiced/repairinvoiced.component';
+import { PayonlineComponent } from './payonline/payonline.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { RepairinvoicedComponent } from './repairinvoiced/repairinvoiced.compone
     PhotocollectionComponent,
     ReservationModelComponent,
     LoginfailDialog,
-    RepairinvoicedComponent
+    RepairinvoicedComponent,
+    PayonlineComponent
   ],
 
   imports: [
