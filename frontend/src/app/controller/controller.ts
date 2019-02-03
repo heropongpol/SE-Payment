@@ -62,7 +62,28 @@ export class Controller {
              getComment(): Observable<any> {
                return this.httpClient.get(this.API + '/ReservationPhotographer');
              }
+getReservationequipment_id(): Observable<any> {
+      return this.httpClient.get(this.API + '/Reservationequipment');
+    }
+getReservationModel_id(): Observable<any> {
+      return this.httpClient.get(this.API + '/ReservationModel');
+    }
+getReservationStudio_id(): Observable<any> {
+      return this.httpClient.get(this.API + '/ReservationStudio');
+    }
+getReservationPhotographer_id(): Observable<any> {
+      return this.httpClient.get(this.API + '/ReservationPhotographer');
+    }
+getPhotocollection_id(): Observable<any> {
+      return this.httpClient.get(this.API + '/Photocollection');
+    }
+getCardtype(): Observable<any> {
+      return this.httpClient.get(this.API + '/Cardtype');
+    }
 
+getCardbank(): Observable<any> {
+      return this.httpClient.get(this.API + '/Cardbank');
+    }
                 public getPhotoseriesID(): Observable<any> {
                          return this.httpClient.get(this.API + '/Photoseries');
                       }

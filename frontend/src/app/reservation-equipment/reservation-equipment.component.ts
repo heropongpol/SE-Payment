@@ -79,6 +79,10 @@ home(){
          this.router.navigate(['reservation-equipment',{first:this.data.first}]);
          console.log(this.data);
       }
+payment(){
+         this.router.navigate(['payonline',{first:this.data.first}]);
+         console.log(this.data);
+      }
        photo(){
                                      this.router.navigate(['reservation-photographer',{first:this.data.first}]);
                                      console.log(this.data);
