@@ -31,6 +31,9 @@
   <mat-button-toggle-group #group="matButtonToggleGroup" style="background-color:#FFFFFF">
     <mat-button-toggle value="left" style="color:#000000;" (click)="model()">Reservation model</mat-button-toggle>
   </mat-button-toggle-group>&nbsp;
+  <mat-button-toggle-group #group="matButtonToggleGroup" style="background-color:#FFFFFF">
+    <mat-button-toggle value="left" style="color:#000000;" (click)="payment()">Payment</mat-button-toggle>
+  </mat-button-toggle-group>&nbsp;
   <mat-divider></mat-divider>
 </mat-toolbar>
 
@@ -68,6 +71,11 @@
       <mat-datepicker-toggle matSuffix [for]="picker"style="color:black;"></mat-datepicker-toggle>
       <mat-datepicker #picker ></mat-datepicker>
     </mat-form-field>
+    <br>
+
+      <mat-form-field>
+        <input matInput placeholder="กรอกราคา" value="" [(ngModel)]="priceNew">
+      </mat-form-field>
     <br>
     <button mat-raised-button color="warn" (click)="insert()">SAVE</button>
     <button mat-raised-button color="primary" (click)="reset()">RESET</button>

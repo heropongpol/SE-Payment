@@ -6,6 +6,8 @@ import com.example.demo.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Null;
 import java.util.Date;
 import java.util.Collection;
 import java.util.Optional;
@@ -21,8 +23,8 @@ public class Controller {
     @Autowired TitleRepository titleRepository ;
     @Autowired PromotionStudioRepository promotionStudioRepository;
     @Autowired private ReservationStudioRepository reservationStudioRepository;
-    @Autowired RoomStudioRepository roomStudioRepository;
-    @Autowired TimeStudioRepository timeStudioRepository;
+    @Autowired private RoomStudioRepository roomStudioRepository;
+    @Autowired private TimeStudioRepository timeStudioRepository;
     @Autowired private Reservationequipmentrepository reservationequipmentrepository;
     @Autowired private Equipmentrepository equipmentrepository;
     @Autowired private Timereceiverepository timereceiverepository;
@@ -36,9 +38,9 @@ public class Controller {
     @Autowired private Photoseriesrepository photoseriesrepository;
     @Autowired private Promotionphotocollectionrepository promotionphotocollectionrepository;
     @Autowired private Shootingstylerepository shootingstylerepository;
-    @Autowired  private ReservationModelRepository reservationModelRepository;
-    @Autowired  ModelRepository modelRepository;
-    @Autowired  PromotionModelRepository promotionModelRepository;
+    @Autowired private ReservationModelRepository reservationModelRepository;
+    @Autowired private ModelRepository modelRepository;
+    @Autowired private PromotionModelRepository promotionModelRepository;
     @Autowired  ProvinceRepository provinceRepository;
     @Autowired  AdminRepository adminRepository;
     @Autowired  CommentRepository commentRepository;
@@ -65,23 +67,23 @@ public Collection<Address> address() {
         return titleRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @GetMapping(path = "/promotionStudio", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/promotionStudio")
     public Collection<PromotionStudio> promotionStudio() {
         return promotionStudioRepository.findAll().stream().collect(Collectors.toList());
     }
-    @GetMapping(path = "/reservationStudio", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<ReservationStudio> reservationStudio() {
+    @GetMapping(path = "/reservationStudio")
+    public Collection<ReservationStudio> reservationStudioRepository() {
         return reservationStudioRepository.findAll().stream().collect(Collectors.toList());
     }
     @GetMapping(path = "/province", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<Province> provinces() {
         return provinceRepository.findAll().stream().collect(Collectors.toList());
     }
-    @GetMapping(path = "/roomStudio", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/roomStudio")
     public Collection<RoomStudio> roomStudio() {
         return roomStudioRepository.findAll().stream().collect(Collectors.toList());
     }
-    @GetMapping(path = "/timeStudio", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/timeStudio")
     public Collection<TimeStudio> timeStudio() {
         return timeStudioRepository.findAll().stream().collect(Collectors.toList());
     }
@@ -89,33 +91,22 @@ public Collection<Address> address() {
 public Collection<Reservationequipment> reservationrepository() {
     return reservationequipmentrepository.findAll().stream().collect(Collectors.toList());
 }
-    @GetMapping(path = "ReservationModels", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<ReservationModel> reservation() {
+    @GetMapping(path = "ReservationModels")
+    public Collection<ReservationModel> reservationModelRepository() {
         return reservationModelRepository.findAll().stream().collect(Collectors.toList());
     }
-    @GetMapping("/ReservationModel/{id}")
-    public Optional<ReservationModel> reservation(@PathVariable Long id) {
-        Optional<ReservationModel> r = reservationModelRepository.findById(id);
-        return r;
-    }
-    @GetMapping(path = "Model", produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @GetMapping(path = "Model")
     public Collection<Model> model() {
         return modelRepository.findAll().stream().collect(Collectors.toList());
     }
-    @GetMapping("/Model/{id}")
-    public Optional<Model> model(@PathVariable Long id) {
-        Optional<Model> md = modelRepository.findById(id);
-        return md;
-    }
-    @GetMapping(path = "PromotionModel", produces = MediaType.APPLICATION_JSON_VALUE)
+
+
+    @GetMapping(path = "PromotionModel")
     public Collection<PromotionModel> promotionModel() {
         return promotionModelRepository.findAll().stream().collect(Collectors.toList());
     }
-    @GetMapping("/PromotionModel/{id}")
-    public Optional<PromotionModel> promotionModel(@PathVariable Long id) {
-        Optional<PromotionModel> p = promotionModelRepository.findById(id);
-        return p;
-    }
+
     @GetMapping(path = "/Equipment")
     public Collection<Equipment> equipmentrepository() {
         return equipmentrepository.findAll().stream().collect(Collectors.toList());
@@ -153,6 +144,11 @@ public Collection<Reservationequipment> reservationrepository() {
         return finalTimeRepository.findAll().stream().collect(Collectors.toList());
     }
 
+    @GetMapping("/repairinvoiced")
+    public Collection<RepairInvoiced> repairInvoiceds() {
+        return repairInvoicedRepository.findAll().stream().collect(Collectors.toList());
+    }
+
     @PostMapping(path = "/reservationPhotographer/{name}/{photographer}/{typePhoto}/{promotionPhotographer}/{startTime}/{finalTime}/{timeSelect}/{comment}")
     public ReservationPhotographer reservationPhotographer(@PathVariable String name , @PathVariable Long photographer ,
                                                            @PathVariable Long typePhoto, @PathVariable Long promotionPhotographer,
@@ -181,11 +177,13 @@ public Collection<Reservationequipment> reservationrepository() {
         return reservationPhotographer1;
     }
 
-    @PostMapping(path = "/reservationStudio/{promotionStudio}/{roomStudio}/{timeStudio}/{reservationDate}/{name}")
-    public ReservationStudio reservationStudio(@PathVariable String name ,@PathVariable Long roomStudio , @PathVariable Long promotionStudio , @PathVariable Long timeStudio,@PathVariable Date reservationDate){
+    @PostMapping(path = "/reservationStudio/{promotionStudio}/{roomStudio}/{timeStudio}/{reservationDate}/{name}/{price}")
+    public ReservationStudio reservationStudio(@PathVariable String name ,@PathVariable Long roomStudio , @PathVariable Long promotionStudio ,
+                                               @PathVariable Long timeStudio,@PathVariable Date reservationDate,@PathVariable int price){
         RoomStudio roomStudio1 = roomStudioRepository.findById(roomStudio).get();
         PromotionStudio promotionStudio1 = promotionStudioRepository.findById(promotionStudio).get();
         TimeStudio timeStudio1 = timeStudioRepository.findById(timeStudio).get();
+
         ReservationStudio reservationStudio = new ReservationStudio();
         Member member = memberRepository.findByName(name);
         reservationStudio.setMember(member);
@@ -193,6 +191,7 @@ public Collection<Reservationequipment> reservationrepository() {
         reservationStudio.setPromotionStudio(promotionStudio1);
         reservationStudio.setTimeStudio(timeStudio1);
         reservationStudio.setReservationDate(reservationDate);
+        reservationStudio.setPrice(price);
         return reservationStudioRepository.save(reservationStudio);
     }
 
@@ -262,6 +261,12 @@ public Collection<Reservationequipment> reservationrepository() {
     public  Member member1(@PathVariable String userid , @PathVariable String password){
         return this.memberRepository.findByUseridAndPassword(userid,password);
     }
+
+    @PostMapping("/admin/{userid}/password/{password}")
+    public  Admin admin(@PathVariable String userid , @PathVariable String password){
+        return this.adminRepository.findByUseridAndPassword(userid,password);
+    }
+
 
 @PostMapping(path = "/reservationequipment/{daterent}/{timereceive}/{equipment}/{name}")
     public Reservationequipment reservationequipment(
@@ -364,30 +369,29 @@ public Collection<Reservationequipment> reservationrepository() {
     public Collection<Cardbank> cardbankrepository() {
         return cardbankrepository.findAll().stream().collect(Collectors.toList());
     }
-
-    @PostMapping(path = "/payment/{card_cvv}/{card_name}/{card_id}/{payment_total}/{name}/{reservationequipment}/{cardbank}/{card_type}/{reservationmodel}/{photocollection}/{reservationphotographer}/{reservationstudio}")
-    public Payment payment(@PathVariable int card_cvv  ,@PathVariable String card_name
-            ,@PathVariable long card_type,@PathVariable String card_id,@PathVariable int payment_total,
-                           @PathVariable String name,@PathVariable Long reservationequipment,@PathVariable Long cardbank,
-                           @PathVariable Long ReservationModels,@PathVariable Long photocollection,
-                           @PathVariable Long reservationPhotographer, @PathVariable Long reservationStudio1) {
+    @PostMapping(path = "/payment/{card_cvv}/{card_name}/{payment_total}/{card_id}/{cardbank}/{card_type}/{name}/{rent5}/{rent2}/{rent4}/{rent3}/{rent1}")
+    public Payment payment(@PathVariable int card_cvv  , @PathVariable String card_name
+            , @PathVariable long card_type, @PathVariable String card_id, @PathVariable int payment_total,
+                           @PathVariable String name, @PathVariable  Long rent1, @PathVariable Long cardbank,
+                           @PathVariable Long rent2, @PathVariable Long rent3,
+                           @PathVariable Long rent4, @PathVariable Long rent5) {
 
 
         Cardtype cardtype = cardtyperepository.findById(card_type).get();
         Cardbank cardbank1 = cardbankrepository.findById(cardbank).get();
         Member member = memberRepository.findByName(name);
-        Reservationequipment rent1 = reservationequipmentrepository.findById(reservationequipment).get();
-        ReservationModel reservationModel1 = reservationModelRepository.findById(ReservationModels).get();
-        ReservationStudio reservationStudio = reservationStudioRepository.findById(reservationStudio1).get();
-        ReservationPhotographer reservationPhotographer1 = reservationPhotographerRepository.findById(reservationPhotographer).get();
-        Photocollection photocollection1 = photocollectionrepository.findById(photocollection).get();
+        Reservationequipment renteq = reservationequipmentrepository.findById(rent1).get();
+        ReservationModel reservationModel1 = reservationModelRepository.findById(rent2).get();
+        ReservationStudio reservationStudio1 = reservationStudioRepository.findById(rent3).get();
+        ReservationPhotographer reservationPhotographer1 = reservationPhotographerRepository.findById(rent4).get();
+        Photocollection photocollection1 = photocollectionrepository.findById(rent5).get();
 
         Payment payment = new Payment();
         payment.setPayment_total(payment_total);
         payment.setMember(member);
-        payment.setReservationequipment(rent1);
+        payment.setReservationequipment(renteq);
         payment.setReservationModel(reservationModel1);
-        payment.setReservationStudio(reservationStudio);
+        payment.setReservationStudio(reservationStudio1);
         payment.setReservationPhotographer(reservationPhotographer1);
         payment.setPhotocollection(photocollection1);
         payment.setCardtype(cardtype);
@@ -395,9 +399,11 @@ public Collection<Reservationequipment> reservationrepository() {
         payment.setCard_id(card_id);
         payment.setCard_cvv(card_cvv);
         payment.setCardbank(cardbank1);
+
         paymentrepository.save(payment);
 
         return payment;
     }
+
 }
 

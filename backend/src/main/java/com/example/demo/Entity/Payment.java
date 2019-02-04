@@ -15,7 +15,7 @@ public class Payment {
     @Id private @NonNull Long Payment_id;
     private  int Payment_total;
     private  String card_id;
-    private   Integer Card_cvv;
+    private   int Card_cvv;
     private   String Card_name;
 
 
@@ -47,11 +47,11 @@ public class Payment {
 
 
 
-    public Integer getCard_cvv() {
+    public int getCard_cvv() {
         return Card_cvv;
     }
 
-    public void setCard_cvv(Integer Card_cvv) {
+    public void setCard_cvv(int Card_cvv) {
         this.Card_cvv = Card_cvv;
     }
 
@@ -65,40 +65,30 @@ public class Payment {
     }
 
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Reservationequipment.class)
-    @JoinColumn(name = "Reservationequipment_ID", insertable = true)
+    @ManyToOne
     private  Reservationequipment reservationequipment;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Member.class)
-    @JoinColumn(name = "Member_ID", insertable = true)
+    @ManyToOne
     private Member member;
 
 
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Cardtype.class)
-    @JoinColumn(name = "Cardtype", insertable = true)
+    @ManyToOne
     private  Cardtype cardtype;
 
-
-
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Cardbank.class)
-    @JoinColumn(name = "Cardbank", insertable = true)
+    @ManyToOne
     private  Cardbank cardbank;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Photocollection.class)
-    @JoinColumn(name = "Photocollection", insertable = true)
+    @ManyToOne
     private  Photocollection photocollection;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = ReservationModel.class)
-    @JoinColumn(name = "ReservationModel", insertable = true)
+    @ManyToOne
     private  ReservationModel reservationModel;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = ReservationPhotographer.class)
-    @JoinColumn(name = "ReservationPhotographer", insertable = true)
+    @ManyToOne
     private  ReservationPhotographer reservationPhotographer;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = ReservationStudio.class)
-    @JoinColumn(name = "ReservationStudio", insertable = true)
+    @ManyToOne
     private  ReservationStudio reservationStudio;
 
     public Cardbank getCardbank() {
@@ -165,7 +155,7 @@ public class Payment {
     }
     public Payment() {
     }
-    public Payment(int Payment_total, Member member,String card_id, int Card_cvv, String Card_name,
+    public Payment(int Payment_total, Member member,String card_id,int Card_cvv, String Card_name,
                    Reservationequipment reservationequipment, Cardtype cardtype, Cardbank cardbank,Photocollection photocollection,
                    ReservationPhotographer reservationPhotographer, ReservationStudio reservationStudio, ReservationModel reservationModel)
     {  //constructor

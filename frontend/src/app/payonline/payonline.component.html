@@ -45,66 +45,66 @@
   <body class="cen">
 
 
-  <font class="a">หมายเลขการจองอุปกรณ์</font>
-  <mat-form-field style="width: 10%;">
+  <font>หมายเลขการจองอุปกรณ์</font>
+  <mat-form-field style="width: 40%;">
     <mat-select placeholder="หมายเลขการจองอุปกรณ์" [(ngModel)]="rent1Select" name="reservationequipment_id">
       <mat-option>None</mat-option>
-      <mat-option *ngFor="let rent1 of rent1s" [value]="rent1.reservationequipment_id" >
-        {{rent1.reservationequipment_id}}
+      <mat-option *ngFor="let a of rent1s" [value]="a.reservationequipment_id" >
+        {{a.reservationequipment_id}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <br>
-  <font class="a">หมายเลขการจองนางแบบ</font>
-  <mat-form-field style="width: 10%;">
+  <font >หมายเลขการจองนางแบบ</font>
+  <mat-form-field style="width: 40%;">
     <mat-select placeholder="หมายเลขการจองนางแบบ" [(ngModel)]="rent2Select" name="reservationModel_id">
       <mat-option>None</mat-option>
-      <mat-option *ngFor="let rent2 of rent2s" [value]="rent2.reservationModel_id" >
-        {{ren2t.reservationModel_id}}
+      <mat-option *ngFor="let d of rent2s" [value]="d.reservationModel_id" >
+        {{d.reservationModel_id}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <br>
-  <font class="a">หมายเลขการจองหมายเลขการจองสตูดิโอ</font>
-  <mat-form-field style="width: 10%;">
+  <font >หมายเลขการจองหมายเลขการจองสตูดิโอ</font>
+  <mat-form-field style="width: 40%;">
     <mat-select placeholder="หมายเลขการจองสตูดิโอ" [(ngModel)]="rent3Select" name="reservationStudio_id">
       <mat-option>None</mat-option>
-      <mat-option *ngFor="let rent3 of rent3s" [value]="rent3.reservationStudio_id" >
-        {{rent3.reservationStudio_id}}
+      <mat-option *ngFor="let c of rent3s" [value]="c.reservationStudio_id" >
+        {{c.reservationStudio_id}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <br>
-  <font class="a">หมายเลขการจองช่างภาพ</font>
-  <mat-form-field style="width: 10%;">
-    <mat-select placeholder="หมายเลขการจองช่างภาพ" [(ngModel)]="rent4Select" name="reservationPhotographer_id">
+  <font >หมายเลขการจองช่างภาพ</font>
+  <mat-form-field style="width: 40%;">
+    <mat-select placeholder="หมายเลขการจองช่างภาพ" [(ngModel)]="rent4Select" name="reservationphotographer_id">
       <mat-option>None</mat-option>
-      <mat-option *ngFor="let rent4 of rent4s" [value]="rent4.reservationPhotographer_id" >
-        {{rent4.reservationPhotographer_id}}
+      <mat-option *ngFor="let b of rent4s" [value]="b.reservationphotographer_id" >
+        {{b.reservationphotographer_id}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <br>
-  <font class="a">หมายเลขการจองชุด</font>
-  <mat-form-field style="width: 10%;">
+  <font >หมายเลขการจองชุด</font>
+  <mat-form-field style="width: 40%;">
     <mat-select placeholder="หมายเลขการจองชุด" [(ngModel)]="rent5Select" name="photocollection_id">
       <mat-option>None</mat-option>
-      <mat-option *ngFor="let rent5 of rent5s" [value]="rent5.photocollection_id" >
-        {{rent5.photocollection_id}}
+      <mat-option *ngFor="let a of rent5s" [value]="a.photocollection_id" >
+        {{a.photocollection_id}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <br>
 
-  <font class="a">ราคาที่ต้องการชำระ</font>
-  <mat-form-field class="a" style="width: 10%;">
+  <font >ราคาที่ต้องการชำระ</font>
+  <mat-form-field class="a" style="width: 40%;">
     <input matInput #input maxlength="5" [(ngModel)]="payment_total" [ngModelOptions]="{standalone: true}" type="text">
   </mat-form-field>
 
   <br>
 
-  <font class="a">ประเภทบัตร</font>
-  <mat-form-field style="width: 10%;">
+  <font>ประเภทบัตร</font>
+  <mat-form-field style="width: 40%;">
     <mat-select placeholder="ประเภทบัตร" [(ngModel)]="cardSelect" name="card_type">
       <mat-option>None</mat-option>
       <mat-option *ngFor="let a of cardtypes" [value]="a.id" >
@@ -114,9 +114,9 @@
   </mat-form-field>
 
   <br>
-  <font class="a">หมายเลขบัตร</font>
+  <font>หมายเลขบัตร</font>
 
-  <mat-form-field class="a"style="width: 10%;">
+  <mat-form-field style="width: 40%;">
     <input matInput #input maxlength="16" [(ngModel)]="card_id" [ngModelOptions]="{standalone: true}" type="text">
   </mat-form-field>
 
@@ -124,17 +124,17 @@
 
 
   <br>
-  <font class="a">ชื่อเจ้าของบัตร</font>
-  <mat-form-field class="a" style="width: 10%;">
+  <font>ชื่อเจ้าของบัตร</font>
+  <mat-form-field class="a" style="width: 40%;">
     <input matInput [(ngModel)]="card_name" [ngModelOptions]="{standalone: true}" type="text">
   </mat-form-field>
   <br>
-  <font class="a">CVV/CID</font>
-  <mat-form-field class="a" style="width: 10%;">
+  <font>CVV/CID</font>
+  <mat-form-field  style="width: 40%;">
     <input matInput #input maxlength="3" [(ngModel)]="card_cvv" [ngModelOptions]="{standalone: true}" type="number">
   </mat-form-field>
   <br>
-  <font class="a">ธนาคารผู้ออกบัตร</font> <mat-form-field style="width: 10%;">
+  <font >ธนาคารผู้ออกบัตร</font> <mat-form-field style="width: 40%;">
     <mat-select  [(ngModel)]="cardbankSelect" name="card_bank">
       <mat-option>None</mat-option>
       <mat-option *ngFor="let a of cbs" [value]="a.id" >
@@ -144,9 +144,6 @@
   </mat-form-field>
   <br>
 
-  <br>
-  <br>
-  <br>
   <br>
 
   <button mat-fab color="primary"  class="enter" (click)= "insert()">Enter</button>

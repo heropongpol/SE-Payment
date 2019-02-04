@@ -34,7 +34,10 @@ import {ReservationPhotographerComponent} from './reservation-photographer/reser
 import {PhotocollectionComponent} from './photocollection/photocollection.component';
 import {ReservationModelComponent} from './reservation-model/reservation-model.component';
 import { RepairinvoicedComponent } from './repairinvoiced/repairinvoiced.component';
+import { LoginwithadminComponent , Loginfail2Dialog} from './loginwithadmin/loginwithadmin.component';
+import { LoginhomeComponent } from './loginhome/loginhome.component';
 import { PayonlineComponent } from './payonline/payonline.component';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +56,11 @@ import { PayonlineComponent } from './payonline/payonline.component';
     ReservationModelComponent,
     LoginfailDialog,
     RepairinvoicedComponent,
+    LoginwithadminComponent,
+    LoginhomeComponent,
+    Loginfail2Dialog,
     PayonlineComponent
+
   ],
 
   imports: [
@@ -83,7 +90,7 @@ import { PayonlineComponent } from './payonline/payonline.component';
 
   ],
   providers: [Controller],
-  entryComponents: [RegisterComponent, DataemptyDialog, PasswordnotcorrectDialog , SuccessDialog , UseralreadyDialog, LoginfailDialog, LoginComponent],
+  entryComponents: [RegisterComponent, DataemptyDialog, PasswordnotcorrectDialog , SuccessDialog , UseralreadyDialog, LoginfailDialog, LoginComponent, LoginwithadminComponent , Loginfail2Dialog],
   bootstrap: [AppComponent]
 })
 

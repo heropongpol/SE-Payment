@@ -96,7 +96,7 @@ export class ReservationPhotographerComponent implements OnInit {
       window.location.reload()
     }
   }
-       home(){
+      home(){
      this.router.navigate(['home',{first:this.data.first}]);
      console.log(this.data);
   }
