@@ -10,35 +10,35 @@ import {Router} from "@angular/router";
   styleUrls: ['./payonline.component.css']
 })
 export class PayonlineComponent implements OnInit {
-private card_id:string;
 private card_cvv:number;
+private card_id:string;
+
 private card_name:string;
-private card_bank:string;
 private payment_total:number;
  data:any={}
   cardtypes: Array<any>;
+  cbs: Array<any>;
   rent1s: Array<any>;
   rent2s: Array<any>;
   rent3s: Array<any>;
   rent4s: Array<any>;
   rent5s: Array<any>;
-  cbs: Array<any>;
 
-  rent1Select = '';
-  rent2Select = '';
-  rent3Select = '';
+
+  rent1Select = null;
+  rent2Select = null;
+  rent3Select = null;
   rent4Select = '';
-  rent5Select = '';
+  rent5Select = null;
 
   cardSelect = '';
   cardbankSelect ='';
 
 
-  constructor(private controller: Controller,
- private httpClient: HttpClient,private route:ActivatedRoute,private router:Router,
-
-
-  ) { }
+    constructor(private controller: Controller,
+              private httpClient: HttpClient,
+              private router:Router,
+              private route:ActivatedRoute){}
 
   ngOnInit() {
   this.controller.getReservationequipment_id().subscribe(data => {
@@ -53,7 +53,7 @@ this.controller.getReservationStudio_id().subscribe(data => {
         this.rent3s = data;
         console.log(this.rent3s);
       })
-this.controller.getReservationPhotographer_id().subscribe(data => {
+this.controller.getReservationphotographer_id().subscribe(data => {
         this.rent4s = data;
         console.log(this.rent4s);
       })
@@ -80,13 +80,12 @@ this.route.params.subscribe(prams=>{
            insert() {
 
        if (this.card_cvv == null || this.card_name == null|| this.cardbankSelect == null ||
-        this.cardSelect == null || this.card_id == null|| this.rent1Select == null|| this.rent2Select == null
-        || this.rent3Select == null|| this.rent4Select == null|| this.rent5Select == null) {
+        this.cardSelect == null || this.card_id == null) {
               alert('กรุณากรอกข้อมูลให้ครบ');
 
         }
         else{
-           this.httpClient.post('http://localhost:8080/payment/'+this.card_cvv +'/'+this.card_name+'/'+this.card_id+'/'+this.payment_total+'/'+this.rent1Select+'/'+this.rent2Select+'/'+this.rent3Select+'/'+this.rent4Select+'/'+this.rent5Select+'/'+this.cardbankSelect+'/'+this.cardSelect  ,{})
+           this.httpClient.post('http://localhost:8080/payment/ ' + this.card_cvv  + '/' + this.card_name + '/'  + this.payment_total + '/'  + this.card_id + '/' + this.cardbankSelect + '/' + this.cardSelect + '/'  + this.data.first + '/' + this.rent5Select + '/' + this.rent2Select + '/' + this.rent4Select + '/' + this.rent3Select + '/' + this.rent1Select ,{})
            .subscribe(
 
               data => {
@@ -129,5 +128,6 @@ payment(){
                                    this.router.navigate(['reservation-model',{first:this.data.first}]);
                                                        console.log(this.data);
                       }
-}
 
+
+}

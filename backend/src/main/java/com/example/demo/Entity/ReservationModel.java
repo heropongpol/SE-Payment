@@ -1,20 +1,32 @@
 package com.example.demo.Entity;
 import lombok.Data;
 import lombok.NonNull;
-import org.springframework.ui.context.Theme;
-
+import javax.persistence.Entity;
 import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import java.util.Date;
+
+
 
 @Entity
 @Data
 @Table(name="ReservationModel")
 public class ReservationModel {
+    public Long getReservationModel_id() {
+        return ReservationModel_id;
+    }
+
+    public void setReservationModel_id(Long reservationmodel_id) {
+        ReservationModel_id = reservationmodel_id;
+    }
+
     @Id
-    @SequenceGenerator(name="Res_seq",sequenceName="Res_seq")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Res_seq")
-    @Column(name = "ReservationModelId" )
-    private @NonNull Long id;
+    @SequenceGenerator(name="ReservationModel_seq",sequenceName="ReservationModel_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ReservationModel_seq")
+    @Column(name = "Reservationmodel_ID" )
+    private @NonNull Long ReservationModel_id;
     private @NonNull String Themes;
     private @NonNull Date date;
     private  @NonNull String Location;
@@ -44,6 +56,7 @@ public class ReservationModel {
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = PromotionModel.class)
     @JoinColumn(name= "PromotionId",insertable = true)
     private PromotionModel promotionModel;
+
 
     public ReservationModel(Date date,String themes,String location,Member member, Model model,
                             PromotionModel promotionModel){

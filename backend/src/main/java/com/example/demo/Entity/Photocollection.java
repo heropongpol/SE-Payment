@@ -1,21 +1,29 @@
 package com.example.demo.Entity;
 
 import io.micrometer.core.lang.NonNull;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
-
+@Data
 @Entity  //บอกว่าเป็น class entity class ที่เก็บขอมูล
 @Table(name="Photocollection")
 public class Photocollection {
 
 
+    public Long getPhotocollection_id() {
+        return Photocollection_id;
+    }
+
+    public void setPhotocollection_id(Long photocollection_id) {
+        Photocollection_id = photocollection_id;
+    }
 
     @Id  //  Annotations  @Id  บอกว่าเป็น  Primary  key
     @SequenceGenerator(name="Photocollection_seq",sequenceName="Photocollection_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Photocollection_seq")
     @Column(name="Photocollection_ID",unique = true, nullable = false)
-    private @NonNull Long id;
+    private @NonNull Long Photocollection_id;
     private @NonNull Date startdate;
     private @NonNull Date lastdate;
 
@@ -31,8 +39,7 @@ public class Photocollection {
     public String getShootingstylename() {  return shootingstylename;  }
 
 
-    public void id(Long id) { this.id = id; }
-    public Long id() { return id; }
+
     public void setStartdate(Date startdate) {
         this.startdate = startdate;
     }
@@ -44,9 +51,7 @@ public class Photocollection {
     }
     public Date getLastdate() { return lastdate; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Member.class)
     @JoinColumn(name = "Member_ID", insertable = true)

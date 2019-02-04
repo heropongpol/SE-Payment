@@ -85,7 +85,7 @@ insert(){
                       }
   }
 
-  home(){
+ home(){
      this.router.navigate(['home',{first:this.data.first}]);
      console.log(this.data);
   }
