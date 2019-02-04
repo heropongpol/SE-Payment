@@ -36,16 +36,16 @@ public class ReservationStudio {
         this.member = member;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private  Member member ;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private  PromotionStudio promotionStudio ;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private  RoomStudio roomStudio;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private  TimeStudio timeStudio;
 
 

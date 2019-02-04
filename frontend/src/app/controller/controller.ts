@@ -94,9 +94,7 @@ export class Controller {
 getReservationequipment_id(): Observable<any> {
       return this.httpClient.get(this.API + '/Reservationequipment');
     }
-getReservationModel_id(): Observable<any> {
-      return this.httpClient.get(this.API + '/ReservationModels');
-    }
+
 getReservationStudio_id(): Observable<any> {
       return this.httpClient.get(this.API + '/reservationStudio');
     }

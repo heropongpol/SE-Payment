@@ -45,16 +45,13 @@ public class ReservationModel {
     public PromotionModel getPromotionModel() { return promotionModel; }
 
 
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Member.class)
-    @JoinColumn(name= "MemberId",insertable = true)
+    @ManyToOne
     private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Model.class)
-    @JoinColumn(name= "ModelId",insertable = true)
+    @ManyToOne
     private Model model;
 
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = PromotionModel.class)
-    @JoinColumn(name= "PromotionId",insertable = true)
+    @ManyToOne
     private PromotionModel promotionModel;
 
 

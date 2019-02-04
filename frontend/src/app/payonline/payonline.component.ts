@@ -28,7 +28,7 @@ private payment_total:number;
   rent1Select = null;
   rent2Select = null;
   rent3Select = null;
-  rent4Select = '';
+  rent4Select = null;
   rent5Select = null;
 
   cardSelect = '';
@@ -45,7 +45,7 @@ private payment_total:number;
         this.rent1s = data;
         console.log(this.rent1s);
       })
-this.controller.getReservationModel_id().subscribe(data => {
+this.controller.getReservation().subscribe(data => {
         this.rent2s = data;
         console.log(this.rent2s);
       })

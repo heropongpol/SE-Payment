@@ -3,6 +3,8 @@ import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Null;
+
 import lombok.*;
 
 @Table(name ="Payment")
@@ -66,12 +68,11 @@ public class Payment {
 
 
     @ManyToOne
+
     private  Reservationequipment reservationequipment;
 
     @ManyToOne
     private Member member;
-
-
 
     @ManyToOne
     private  Cardtype cardtype;
@@ -86,6 +87,7 @@ public class Payment {
     private  ReservationModel reservationModel;
 
     @ManyToOne
+
     private  ReservationPhotographer reservationPhotographer;
 
     @ManyToOne
